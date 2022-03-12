@@ -63,7 +63,9 @@ async function seasonInfo(req, res) {
 
   try {
     console.clear();
-    let leagueGroups = await coc.clanLeague(tag);
+    let leagueGroups = await coc();
+    leagueGroups = await leagueGroups.clanLeague(tag);
+
     data.season = new Date(leagueGroups.season).toLocaleString("en-US", {
       month: "long",
     });
@@ -76,7 +78,7 @@ async function seasonInfo(req, res) {
 
     // leagueGroups.rounds.forEach((round) => {
     //   round.warTags.forEach(async (warTag) => {
-    //     let warInfo = await coc.clanLeagueWars(warTag);
+    //     let warInfo = await coc().clanLeagueWars(warTag);
     //     if (warInfo.clan.tag === tag) {
     //       data.stars = data.stars + warInfo.stars;
     //       data.destruction = data.destruction + warInfo.destructionPercentage;
@@ -86,7 +88,8 @@ async function seasonInfo(req, res) {
 
     for (let i = 0; i < leagueGroups.rounds.length; i++) {
       for (let j = 0; j < leagueGroups.rounds[i].warTags.length; j++) {
-        let warInfo = await coc.clanLeagueWars(
+        let warInfo = await coc();
+        warInfo = await warInfo.clanLeagueWars(
           leagueGroups.rounds[i].warTags[j]
         );
         if (warInfo.clan.tag === tag) {

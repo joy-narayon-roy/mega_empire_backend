@@ -2,8 +2,8 @@ const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 const mongoose = require("mongoose");
-
 const allRoute = require("./routers/allRoutes");
+const ApiToken = require("./mongoSchemas/apiToken")
 
 let app = express();
 
@@ -13,7 +13,11 @@ app.use(
   })
 );
 
-const accessDomain = ["http://localhost:8080", "http://localhost:3000","https://megaempire-6291d.firebaseapp.com/"];
+const accessDomain = [
+  "http://localhost:8080",
+  "http://localhost:3000",
+  "https://megaempire-6291d.firebaseapp.com/",
+];
 
 const allMiddleWar = [
   express.json(),
@@ -25,7 +29,9 @@ const allMiddleWar = [
 app.use(allMiddleWar);
 
 const PORT = process.env.PORT || 8080;
-app.get("/",(req,res)=>{res.json({msg:"HI"})})
+app.get("/", async (req, res) => {
+  res.json({ msg: "HI" });
+});
 allRoute(app);
 
 mongoose.connect(
