@@ -26,7 +26,7 @@ app.use(allMiddleWar);
 
 const PORT = process.env.PORT || 8080;
 app.get("/",(req,res)=>{res.json({msg:"HI"})})
-//allRoute(app);
+allRoute(app);
 
 mongoose.connect(
   `mongodb+srv://Joy:${process.env.DB_PASSWORD}@cluster0.xbov4.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`,
