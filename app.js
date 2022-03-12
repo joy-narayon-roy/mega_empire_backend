@@ -25,6 +25,7 @@ const allMiddleWar = [
 app.use(allMiddleWar);
 
 const PORT = process.env.PORT || 8080;
+app.get("/",(req,res)=>{res.json({msg:"HI"})})
 allRoute(app);
 
 mongoose.connect(
