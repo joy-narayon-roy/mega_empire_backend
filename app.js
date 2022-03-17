@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const allRoute = require("./routers/allRoutes");
 const ApiToken = require("./mongoSchemas/apiToken");
 const updateCurrentWarInfo = require("./utilities/updateCurrentWarInfo");
+var http = require("http");
 
 let app = express();
 
@@ -29,9 +30,13 @@ const allMiddleWar = [
 ];
 app.use(allMiddleWar);
 
-setInterval(()=>{
-  console.log(updateCurrentWarInfo())
-},120000)
+setInterval(() => {
+  console.log(updateCurrentWarInfo());
+}, 120000);
+
+setInterval(function () {
+  http.get("https://meagaempire.herokuapp.com/");
+}, 300000); // every 5 minutes (300000)
 
 const PORT = process.env.PORT || 8080;
 app.get("/", async (req, res) => {
