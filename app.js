@@ -35,7 +35,7 @@ setInterval(() => {
 }, 120000);
 
 setInterval(function () {
-  http.get("https://meagaempire.herokuapp.com/");
+  http.get("http://meagaempire.herokuapp.com/");
 }, 300000); // every 5 minutes (300000)
 
 const PORT = process.env.PORT || 8080;
