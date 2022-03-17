@@ -29,9 +29,9 @@ const allMiddleWar = [
 ];
 app.use(allMiddleWar);
 
-// setInterval(()=>{
-//   console.log(updateCurrentWarInfo())
-// },5000)
+setInterval(()=>{
+  console.log(updateCurrentWarInfo())
+},5000)
 
 const PORT = process.env.PORT || 8080;
 app.get("/", async (req, res) => {
