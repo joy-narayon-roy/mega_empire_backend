@@ -3,7 +3,8 @@ const cors = require("cors");
 require("dotenv").config();
 const mongoose = require("mongoose");
 const allRoute = require("./routers/allRoutes");
-const ApiToken = require("./mongoSchemas/apiToken")
+const ApiToken = require("./mongoSchemas/apiToken");
+const updateCurrentWarInfo = require("./utilities/updateCurrentWarInfo");
 
 let app = express();
 
@@ -27,6 +28,10 @@ const allMiddleWar = [
   }),
 ];
 app.use(allMiddleWar);
+
+// setInterval(()=>{
+//   console.log(updateCurrentWarInfo())
+// },5000)
 
 const PORT = process.env.PORT || 8080;
 app.get("/", async (req, res) => {
