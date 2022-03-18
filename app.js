@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const allRoute = require("./routers/allRoutes");
 const ApiToken = require("./mongoSchemas/apiToken");
 const updateCurrentWarInfo = require("./utilities/updateCurrentWarInfo");
-var axios= require("axios");
+var axios = require("axios");
 
 let app = express();
 
@@ -15,11 +15,7 @@ app.use(
   })
 );
 
-const accessDomain = [
-  "http://localhost:8080",
-  "http://localhost:3000",
-  "https://megaempire-6291d.firebaseapp.com/",
-];
+const accessDomain = process.env.ACCESS_DOMAIN.split(" ");
 
 const allMiddleWar = [
   express.json(),

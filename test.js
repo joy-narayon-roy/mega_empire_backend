@@ -1,5 +1,3 @@
-const axios = require("axios").default;
+require("dotenv").config()
 
-setInterval(() => {
-  axios.get("https://megaempire.herokuapp.com/");
-}, 1000);
+console.log(process.env.ACCESS_DOMAIN.split(" "))
