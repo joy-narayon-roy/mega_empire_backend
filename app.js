@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const allRoute = require("./routers/allRoutes");
 const ApiToken = require("./mongoSchemas/apiToken");
 const updateCurrentWarInfo = require("./utilities/updateCurrentWarInfo");
-var http = require("http");
+var axios= require("axios");
 
 let app = express();
 
@@ -34,9 +34,9 @@ setInterval(() => {
   console.log(updateCurrentWarInfo());
 }, 120000);
 
-setInterval(function () {
-  http.get("http://meagaempire.herokuapp.com/");
-}, 300000); // every 5 minutes (300000)
+setInterval(() => {
+  axios.get("https://megaempire.herokuapp.com/");
+}, 300000);
 
 const PORT = process.env.PORT || 8080;
 app.get("/", async (req, res) => {
