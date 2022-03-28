@@ -31,6 +31,13 @@ async function saveCurrentWarInfoGetController(req, res) {
   try {
     let coc = await cocApi();
     let currentwar = await coc.clanCurrentWarByTag(myClanTag);
+
+    if (currentwar.state === "notInWar") {
+      res.status(200).json({
+        msg: "Not In War",
+      });
+      return 0;
+    }
     let warTag;
     if (currentwar.opponent.tag === myClanTag) {
       warTag = currentwar.clan.tag;
