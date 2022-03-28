@@ -1,8 +1,7 @@
 const router = require("express").Router();
 
-const saveCurrentWarInfoGetController = require('../controllers/saveControllers/saveCurrentWarInfoGetController')
+const saveCurrentWarInfoGetController = require("../controllers/saveControllers/saveCurrentWarInfoGetController");
 
-router.get("/currentwar/:tag",saveCurrentWarInfoGetController)
+router.get("/currentwar", saveCurrentWarInfoGetController);
 
-
-module.exports=router
+module.exports = router;

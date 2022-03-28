@@ -7,7 +7,26 @@ function updateCurrentWarInfo() {
 
   cocApi().then((coc) => {
     coc.clanCurrentWarByTag("#RRVJCJVY").then((res) => {
+      let warTag;
+
+      if (res.state !== "notInWar" && res.opponent.tag === "#RRVJCJVY") {
+        warTag = res.clan.tag;
+      } else if (res.state !== "notInWar" && res.opponent.tag !== "#RRVJCJVY") {
+        warTag = res.opponent.tag;
+      }
+
       if (res.state !== "notInWar") {
+        ClanWarInfo.findById(warTag).then(data).catch
+      }
+    });
+  });
+
+  return date.toLocaleString("en-US");
+}
+module.exports = updateCurrentWarInfo;
+
+/*
+if (res.state !== "notInWar") {
         ClanWarInfo.findOne({ endTime: res.endTime })
           .then((data) => {
             if (data) {
@@ -31,9 +50,4 @@ function updateCurrentWarInfo() {
             console.log(cre);
           });
       }
-    });
-  });
-
-  return date.toLocaleString("en-US");
-}
-module.exports = updateCurrentWarInfo;
+*/

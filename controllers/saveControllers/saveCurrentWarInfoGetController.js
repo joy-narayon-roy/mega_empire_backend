@@ -1,32 +1,66 @@
 const cocApi = require("../../hooks/useCoc");
-const clanWarInfo = require("../../mongoSchemas/clanWarInfo");
+const ClanWarInfo = require("../../mongoSchemas/clanWarInfo");
+
+async function creatWarInfo(tag, currentwar) {
+  try {
+    let newClanWarInfo = new ClanWarInfo({
+      _id: tag,
+      ...currentwar,
+    });
+    let data = await newClanWarInfo.save();
+    return data;
+  } catch (err) {
+    throw err;
+  }
+}
+
+async function updateWarInfo(tag, newData) {
+  try {
+    await ClanWarInfo.findByIdAndUpdate(tag, newData);
+    return true;
+  } catch (error) {
+    console.log("Update Failed!");
+    console.log(error);
+    throw new Error(error);
+  }
+}
 
 async function saveCurrentWarInfoGetController(req, res) {
+  const myClanTag = "#RRVJCJVY";
+
   try {
-    let tag = "#" + req.params.tag;
     let coc = await cocApi();
-    let warData = await coc.clanCurrentWarByTag(tag);
-    let warInfo = await clanWarInfo.findOne({ endTime: warData.endTime });
-    if (warInfo) {
-      clanWarInfo
-        .findByIdAndUpdate(warInfo._id, warData)
-        .then((data) => {
-          res.json({ msg: "Updated", data });
-        })
-        .catch((err) => {
-          console.log("Update Failed __________");
-          console.log(err);
-          res.json({ msg: "Failed To Upadate!" });
-        });
-    } else {
-      let newWarInfo = new clanWarInfo(warData);
-      let saveState = await newWarInfo.save();
-      res.json({ msg: "Saved", saveState });
+    let currentwar = await coc.clanCurrentWarByTag(myClanTag);
+    let warTag;
+    if (currentwar.opponent.tag === myClanTag) {
+      warTag = currentwar.clan.tag;
+    } else if (currentwar.opponent.tag !== myClanTag) {
+      warTag = currentwar.opponent.tag;
     }
-  } catch (err) {
-    console.log("ERROR ______________");
-    console.log(err);
-    res.status(400).json({ err: "Some Error" });
+
+    let previousClanInfo = ClanWarInfo.findById(warTag);
+
+    if (previousClanInfo) {
+      let updated = await updateWarInfo(warTag, currentwar);
+      if (updated) {
+        console.log(`Data updated - ${new Date().toLocaleTimeString()}`);
+        res.status(200).json({
+          msg: "Data Updated!",
+        });
+      } else {
+        console.log(`Data update failed - ${new Date().toLocaleTimeString()}`);
+        res.status(200).json({
+          msg: "Failed To Update!",
+        });
+      }
+      return 0;
+    } else {
+      let created = await creatWarInfo(warTag, currentwar);
+      res.json(created);
+    }
+  } catch (error) {
+    res.status(400).send("Error");
+    console.log(error);
   }
 }
 
