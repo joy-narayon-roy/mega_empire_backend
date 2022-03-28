@@ -38,14 +38,7 @@ app.get("/", async (req, res) => {
   res.json({ msg: "HI" });
 });
 allRoute(app);
-app.use((err, req, res, next) => {
-  if (err) {
-    console.log(err);
-    res.status(500).json({
-      message: "Internal Server Errors",
-    });
-  }
-});
+
 const GLOBAL_DB = `mongodb+srv://Joy:${process.env.DB_PASSWORD}@cluster0.xbov4.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 const LOCAL_DB = "mongodb://127.0.0.1:27017/coc";
 mongoose.connect(
