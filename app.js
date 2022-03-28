@@ -41,7 +41,6 @@ allRoute(app);
 
 const GLOBAL_DB = `mongodb+srv://Joy:${process.env.DB_PASSWORD}@cluster0.xbov4.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 const LOCAL_DB = "mongodb://127.0.0.1:27017/coc";
-
 mongoose.connect(
   process.env.FROM === "dev" ? LOCAL_DB : GLOBAL_DB,
   function (err) {

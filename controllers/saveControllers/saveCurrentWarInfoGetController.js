@@ -38,7 +38,7 @@ async function saveCurrentWarInfoGetController(req, res) {
       warTag = currentwar.opponent.tag;
     }
 
-    let previousClanInfo = ClanWarInfo.findById(warTag);
+    let previousClanInfo = await ClanWarInfo.findById(warTag);
 
     if (previousClanInfo) {
       let updated = await updateWarInfo(warTag, currentwar);
@@ -56,7 +56,7 @@ async function saveCurrentWarInfoGetController(req, res) {
       return 0;
     } else {
       let created = await creatWarInfo(warTag, currentwar);
-      res.json(created);
+      res.json({ created, msg: "Created" });
     }
   } catch (error) {
     res.status(400).send("Error");
