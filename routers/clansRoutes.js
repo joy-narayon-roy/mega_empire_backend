@@ -1,24 +1,21 @@
 const router = require("express").Router();
 
-const clanGetController = require("../controllers/clanControllers/clanGetController");
-const currentwarGetController = require("../controllers/clanControllers/currentwarGetController");
-const warleaguegroupGetController = require("../controllers/clanControllers/warleaguegroupGetController");
-const warleaguewarGetController = require("../controllers/clanControllers/warleaguewarGetController");
-const clanmembersGetController = require("../controllers/clanControllers/clanmembersGetController");
-const warlogGetController = require("../controllers/clanControllers/warlogGetController");
-const seasonInfoGetController = require("../controllers/clanControllers/seasonInfoGetController");
-const clanwarDetailsGetController = require("../controllers/clanControllers/clanwarDetailsGetController");
+const clanGetController = require("../controllers/apiControllers/clanControllers/clanGetController");
+const currentwarGetController = require("../controllers/apiControllers/clanControllers/currentwarGetController");
+const currentwarleagueGetController = require("../controllers/apiControllers/clanControllers/currentwarleagueGetController");
+const warlogGetCOntroller = require("../controllers/apiControllers/clanControllers/warlogGetCOntroller");
+const wardetaileGetController = require("../controllers/apiControllers/clanControllers/wardetaileGetController");
+//const currentwarleaguewarGetController = require("../controllers/apiControllers/clanControllers/currentwarleagueGetController");
+const warleaguelogGetController = require("../controllers/apiControllers/clanControllers/warleaguelogGetController");
+const warleaguewarGetController = require("../controllers/apiControllers/clanControllers/warleaguewarGetController");
 
-router.get("/", (req, res) => {
-  res.json({ message: "You are in clan" });
-});
-router.get("/:tag", clanGetController);
-router.get("/:tag/members", clanmembersGetController);
-router.get("/:tag/currentwar", currentwarGetController);
-router.get("/:tag/warlog", warlogGetController);
-router.get("/:tag/wardetails/:endtime", clanwarDetailsGetController);
-router.get("/clanwarleague/group/:tag", warleaguegroupGetController);
-router.get("/clanwarleague/war/:tag", warleaguewarGetController);
-router.get("/clanwarleague/seasoninfo/:tag", seasonInfoGetController);
+router.get("/", clanGetController);
+router.get("/currentwar", currentwarGetController);
+router.get("/warlog", warlogGetCOntroller);
+router.get("/wardetail", wardetaileGetController);
+router.get("/currentwarleague", currentwarleagueGetController);
+router.get("/warleaguelog", warleaguelogGetController);
+router.get("/warleaguewar", warleaguewarGetController);
+router.get("/*");
 
 module.exports = router;
