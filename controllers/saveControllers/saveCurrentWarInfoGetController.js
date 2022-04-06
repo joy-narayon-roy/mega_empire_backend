@@ -25,7 +25,7 @@ async function updateWarInfo(tag, newData) {
   }
 }
 
-async function saveCurrentWarInfoGetController(req, res) {
+async function saveCurrentWarInfoGetController(req, res, next) {
   const myClanTag = "#RRVJCJVY";
 
   try {
@@ -66,8 +66,8 @@ async function saveCurrentWarInfoGetController(req, res) {
       res.json({ created, msg: "Created" });
     }
   } catch (error) {
-    res.status(400).send("Error");
-    console.log(error);
+    // res.status(400).send("Error");
+    next(error);
   }
 }
 

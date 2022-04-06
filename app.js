@@ -31,7 +31,6 @@ setInterval(() => {
   axios.get(`${process.env.SERVER}/save/clan/CurrentWar`);
 }, 130000);
 
-
 const PORT = process.env.PORT || 8080;
 app.get("/", async (req, res) => {
   res.json({ msg: "HI" });
@@ -40,10 +39,9 @@ allRoute(app);
 
 // Error Handeler
 app.use((err, req, res, next) => {
-  console.log(err)
-  res.status(500).send('Something broke!')
-})
-
+  console.log(err.error ? err.error.message : err);
+  res.send("Something broke!");
+});
 
 const GLOBAL_DB = `mongodb+srv://Joy:${process.env.DB_PASSWORD}@cluster0.xbov4.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 const LOCAL_DB = "mongodb://127.0.0.1:27017/coc";
