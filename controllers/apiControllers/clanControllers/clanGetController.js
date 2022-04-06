@@ -13,7 +13,7 @@ async function clanGetController(req, res, next) {
         });
     })
     .catch((err) => {
-      next(err);
+      next(err.error);
     });
 }
 

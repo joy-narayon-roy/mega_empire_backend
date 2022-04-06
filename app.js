@@ -39,8 +39,11 @@ allRoute(app);
 
 // Error Handeler
 app.use((err, req, res, next) => {
-  console.log(err.error ? err.error.message : err);
-  res.send("Something broke!");
+  if (err) {
+    res.json(err.message);
+    console.log("------------Error------------");
+    console.log(err);
+  }
 });
 
 const GLOBAL_DB = `mongodb+srv://Joy:${process.env.DB_PASSWORD}@cluster0.xbov4.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;

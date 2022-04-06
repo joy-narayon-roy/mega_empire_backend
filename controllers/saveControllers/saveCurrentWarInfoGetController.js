@@ -67,7 +67,7 @@ async function saveCurrentWarInfoGetController(req, res, next) {
     }
   } catch (error) {
     // res.status(400).send("Error");
-    next(error);
+    next(error.error);
   }
 }
 

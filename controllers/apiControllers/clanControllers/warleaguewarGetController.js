@@ -14,7 +14,7 @@ async function warleaguewarGetController(req, res, next) {
         });
     })
     .catch((err) => {
-      next(err);
+      next(err.error);
     });
 }
 

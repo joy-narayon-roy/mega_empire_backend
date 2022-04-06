@@ -8,7 +8,7 @@ async function wardetaileGetController(req, res, next) {
       res.status(200).json(datas);
     })
     .catch((err) => {
-      next(err);
+      next(err.error);
     });
 }
 
