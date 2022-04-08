@@ -1,6 +1,7 @@
 // const router = require("express").Router()
 const clansRoutes = require("./clansRoutes");
 const saveRoutes = require("./saveRoutes");
+const cpanelRoures = require("./cpanelRoutes");
 
 let routes = [
   {
@@ -10,6 +11,10 @@ let routes = [
   {
     path: "/api/clan",
     route: clansRoutes,
+  },
+  {
+    path: "/cpanel",
+    route: cpanelRoures,
   },
 ];
 

@@ -1,14 +1,17 @@
 const mongoose = require("mongoose");
 
-let apiSchema = new mongoose.Schema({
-  name: {
-    type: "String",
+let apiSchema = new mongoose.Schema(
+  {
+    name: {
+      type: "String",
+    },
+    token: {
+      type: "String",
+    },
   },
-  token: {
-    type: "String",
-  },
-});
+  { timestamps: true }
+);
 
-const ApiToken = mongoose.model("ApiToken",apiSchema)
+const ApiToken = mongoose.model("ApiToken", apiSchema);
 
-module.exports = ApiToken
+module.exports = ApiToken;
