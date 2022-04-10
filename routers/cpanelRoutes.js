@@ -27,8 +27,9 @@ router.get("/apikey", (req, res, next) => {
 router.post("/apikey", (req, res) => {
   let apiPassword = process.env.APIPASSWORD;
   let { key, password } = req.body;
+  console.log(req.body);
   if (!password) {
-    res.json({ msg: "Pleace set password" });
+    res.status(200).json({ msg: "Pleace set password" });
   }
   if (password === apiPassword && key) {
     apiToken
