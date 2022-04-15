@@ -5,7 +5,6 @@ const currentwarGetController = require("../controllers/apiControllers/clanContr
 const currentwarleagueGetController = require("../controllers/apiControllers/clanControllers/currentwarleagueGetController");
 const warlogGetCOntroller = require("../controllers/apiControllers/clanControllers/warlogGetCOntroller");
 const wardetaileGetController = require("../controllers/apiControllers/clanControllers/wardetaileGetController");
-//const currentwarleaguewarGetController = require("../controllers/apiControllers/clanControllers/currentwarleagueGetController");
 const warleaguelogGetController = require("../controllers/apiControllers/clanControllers/warleaguelogGetController");
 const warleaguewarGetController = require("../controllers/apiControllers/clanControllers/warleaguewarGetController");
 
