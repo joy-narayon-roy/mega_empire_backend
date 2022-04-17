@@ -38,7 +38,7 @@ setInterval(() => {
       console.log(err.message);
     });
 }, 130000);
-// 
+
 const PORT = process.env.PORT || 8080;
 app.get("/", async (req, res) => {
   res.json({ msg: "HI" });

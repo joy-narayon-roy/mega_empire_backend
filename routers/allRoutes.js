@@ -4,16 +4,31 @@ const saveRoutes = require("./saveRoutes");
 const cpanelRoures = require("./cpanelRoutes");
 const playerRoutes = require("./playerRoutes");
 const { Router } = require("express");
-const { findPlayer } = require("../utilities/cocPlayer");
+const coc = require("../utilities/coc");
 
 let router = Router();
-router.get("/", (req, res) => {
-  findPlayer("Tag");
-
-  res.send("TEST");
+router.get("/player", async (req, res) => {
+  coc
+    .findPlayer("#98QYV2PYR")
+    .then((resdata) => {
+      res.status(200).json(resdata);
+    })
+    .catch((err) => {
+      res.status(404).json({ msg: err.message });
+    });
 });
 
-router.g;
+router.get("/clan", (req, res) => {
+  coc
+    .findClan()
+    .then((resData) => {
+      console.log(resData);
+      res.json(resData);
+    })
+    .catch((err) => {
+      res.status(400).json({ msg: err.message });
+    });
+});
 
 let routes = [
   {
