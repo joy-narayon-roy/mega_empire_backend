@@ -28,15 +28,14 @@ app.set("view engine", "ejs");
 app.use(allMiddleWar);
 
 setInterval(() => {
-  axios
-    .get(`${process.env.SERVER}/save/clan/CurrentWar`)
-    .then((res) => {
-      console.log(`Saving Data - ${res.status}`);
-    })
-    .catch((err) => {
-      console.log("---------Error in Axios----------");
-      console.log(err.message);
-    });
+  axios.get(`${process.env.SERVER}/save/clan/CurrentWar`);
+  // .then((res) => {
+  //   console.log(`Saving Data - ${res.status}`);
+  // })
+  // .catch((err) => {
+  //   console.log("---------Error in Axios----------");
+  //   console.log(err.message);
+  // });
 }, 130000);
 
 const PORT = process.env.PORT || 8080;
