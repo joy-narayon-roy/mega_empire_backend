@@ -9,11 +9,16 @@ let warLeagueInfoSchema = new mongoose.Schema({
   clans: {
     type: ["Mixed"],
   },
-  rounds: {
-    type: ["Mixed"],
-  },
+  rounds: [
+    {
+      warTags: {
+        type: ["Mixed"],
+        ref: "WarInfo",
+      },
+    },
+  ],
 });
 
 const WarLeagueInfo = mongoose.model("WarLeagueInfo", warLeagueInfoSchema);
 
-module.exports = WarLeagueInfo
+module.exports = WarLeagueInfo;
