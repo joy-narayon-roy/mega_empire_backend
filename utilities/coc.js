@@ -4,10 +4,10 @@ class ClashOfClan {
   constructor() {
     this.baseURL = "https://api.clashofclans.com/v1";
 
-    if (process.env.API_TOKEN) {
-      this.apiToken = process.env.API_TOKEN;
+    if (process.env.COC_API_TOKEN) {
+      this.apiToken = process.env.COC_API_TOKEN;
       this.headers = {
-        Authorization: `Bearer ${process.env.API_TOKEN}`,
+        Authorization: `Bearer ${process.env.COC_API_TOKEN}`,
       };
       return this;
     } else {
@@ -25,7 +25,7 @@ class ClashOfClan {
           headers: this.headers,
         });
 
-        console.log(res);
+        // console.log(res);
 
         return res.data;
       } catch (err) {

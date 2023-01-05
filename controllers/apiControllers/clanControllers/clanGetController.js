@@ -9,7 +9,7 @@ async function clanGetController(req, res, next) {
         .clanByTag(tag)
         .then((response) => res.status(200).json(response))
         .catch((err) => {
-          res.status(404).json(err.error);
+          next({ error: err.error, statusCode: err.statusCode });
         });
     })
     .catch((err) => {

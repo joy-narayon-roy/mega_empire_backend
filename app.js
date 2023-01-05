@@ -47,9 +47,25 @@ allRoute(app);
 // Error Handeler
 app.use((err, req, res, next) => {
   if (err) {
-    res.json(err.message);
     console.log("------------Error------------");
-    console.log(err);
+    console.log(err.error);
+    console.log(err.statusCode);
+    if (err.statusCode == 403) {
+      const errorMessage = err.error.message;
+      ApiToken.findOneAndUpdate(
+        { name: `${process.env.FROM}` },
+        {
+          message: errorMessage,
+        },
+        function (err, doc) {
+          if (err) console.log("an error");
+          else {
+            console.log(".......");
+          }
+        }
+      );
+    }
+    res.status(500).json(err.error);
   }
 });
 
@@ -63,7 +79,7 @@ mongoose.connect(
     } else {
       console.log("DB Connected");
 
-      app.listen(PORT, (err) => {
+      app.listen(PORT, function (err) {
         if (err) {
           console.log("Error! Faild to run server");
           console.log(err);

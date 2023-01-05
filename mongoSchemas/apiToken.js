@@ -8,6 +8,9 @@ let apiSchema = new mongoose.Schema(
     token: {
       type: "String",
     },
+    message: {
+      type: "String",
+    },
   },
   { timestamps: true }
 );

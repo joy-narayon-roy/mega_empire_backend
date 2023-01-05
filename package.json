@@ -5,8 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "clear && nodemon app.js",
-    "test": "clear && nodemon app.js"
+    "dev": "nodemon app.js",
+    "test": "nodemon app.js"
   },
   "author": "",
   "license": "ISC",
