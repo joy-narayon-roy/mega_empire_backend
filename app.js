@@ -6,6 +6,7 @@ const allRoute = require("./routers/allRoutes");
 const ApiToken = require("./mongoSchemas/apiToken");
 const updateCurrentWarInfo = require("./utilities/updateCurrentWarInfo");
 var axios = require("axios");
+const api_key_bd = require("./utilities/apikeyDB")
 
 let app = express();
 
@@ -23,6 +24,7 @@ const allMiddleWar = [
     origin: accessDomain,
     credentials: true,
   }),
+  express.static('./public')
 ];
 app.set("view engine", "ejs");
 app.use(allMiddleWar);
@@ -78,6 +80,7 @@ mongoose.connect(
       console.log(err);
     } else {
       console.log("DB Connected");
+      api_key_bd.setKey()
 
       app.listen(PORT, function (err) {
         if (err) {

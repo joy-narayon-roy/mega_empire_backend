@@ -1,18 +1,18 @@
 const axios = require("axios");
+const ApiToken = require("../mongoSchemas/apiToken");
+
+const apiHeader = async () => {
+  let apiToken = await ApiToken.findOne({
+    name: process.env.FROM,
+  });
+  return {
+    Authorization: `Bearer ${apiToken.token}`,
+  };
+};
 
 class ClashOfClan {
   constructor() {
-    this.baseURL = "https://api.clashofclans.com/v1";
-
-    if (process.env.COC_API_TOKEN) {
-      this.apiToken = process.env.COC_API_TOKEN;
-      this.headers = {
-        Authorization: `Bearer ${process.env.COC_API_TOKEN}`,
-      };
-      return this;
-    } else {
-      throw Error("Provid Api Token");
-    }
+    this.baseURL = process.env.API_BASE_URL;
   }
 
   async findClan(tag = "#RRVJCJVY") {
@@ -24,8 +24,6 @@ class ClashOfClan {
         let res = await axios.get(`${this.baseURL}/clan/${tag}`, {
           headers: this.headers,
         });
-
-        // console.log(res);
 
         return res.data;
       } catch (err) {

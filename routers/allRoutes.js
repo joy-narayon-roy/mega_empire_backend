@@ -4,8 +4,10 @@ const clansRoutes = require("./clansRoutes");
 const saveRoutes = require("./saveRoutes");
 const cpanelRoures = require("./cpanelRoutes");
 const playerRoutes = require("./playerRoutes");
+const clanCapitalRoutes = require("./clanCapitalRoutes");
 const coc = require("../utilities/coc");
-const myclan = require("./myclan")
+const myclan = require("./myclan");
+const testRoutes = require("./testRoutes")
 
 let router = Router();
 // router.get("/player", async (req, res) => {
@@ -43,9 +45,14 @@ let routes = [
   {
     path: "/api/player",
     route: playerRoutes,
-  },{
-    path:"/api/myclan",
-    route:myclan
+  },
+  {
+    path: "/api/myclan",
+    route: myclan,
+  },
+  {
+    path: "/api/clancapital",
+    route: clanCapitalRoutes,
   },
   {
     path: "/cpanel",
@@ -53,7 +60,7 @@ let routes = [
   },
   // {
   //   path: "/test",
-  //   route: router,
+  //   route: testRoutes,
   // },
 ];
 

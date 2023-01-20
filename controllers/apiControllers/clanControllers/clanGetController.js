@@ -1,20 +1,15 @@
-const cocApi = require("../../../hooks/useCoc");
+const useClan = require("../../../hooks/useClan");
 
-async function clanGetController(req, res, next) {
-  let { tag = "#RRVJCJVY" } = req.query;
-
-  cocApi()
-    .then((coc) => {
-      coc
-        .clanByTag(tag)
-        .then((response) => res.status(200).json(response))
-        .catch((err) => {
-          next({ error: err.error, statusCode: err.statusCode });
-        });
-    })
-    .catch((err) => {
-      next(err.error);
+async function clanGetController(req, res) {
+  let { tag = "%23RRVJCJVY" } = req.query;
+  try {
+    let { status, data } = await useClan(tag);
+    res.status(status).json(data);
+  } catch (error) {
+    res.status(500).json({
+      message: "Internal server error!",
     });
+  }
 }
 
 module.exports = clanGetController;
