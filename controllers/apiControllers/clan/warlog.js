@@ -1,5 +1,6 @@
-const clan_services = require("../../../services/x");
-async function warlogGetCOntroller(req, res, next) {
+const clan_services = require("../../../services/clans");
+
+async function warlog(req, res, next) {
   const { tag = "#RRVJCJVY", limit, before, after } = req.query;
   try {
     const { status, data } = await clan_services.getWarLog({
@@ -14,4 +15,4 @@ async function warlogGetCOntroller(req, res, next) {
   }
 }
 
-module.exports = warlogGetCOntroller;
+module.exports = warlog;

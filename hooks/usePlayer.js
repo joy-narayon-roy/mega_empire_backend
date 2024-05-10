@@ -1,6 +1,7 @@
 const https = require("https");
+const api_key_db = require("../utilities/apikeyDB");
 
-const useFetch = (options, headers) => {
+const fetch = (options, headers) => {
   return new Promise((resolve, reject) => {
     const req = https.get(options, (res) => {
       let data = "";
@@ -34,4 +35,22 @@ const useFetch = (options, headers) => {
   });
 };
 
-module.exports = useFetch
+// fetch(options)
+//   .then((d) => console.log(d))
+//   .catch((err) => console.log(err));
+
+const usePlayer = (tag) => {
+  const options = {
+    hostname: "api.clashofclans.com",
+    path: `/v1/players/${tag}`,
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${api_key_db.getKey()}`,
+    },
+  };
+
+  return fetch(options);
+};
+
+module.exports = usePlayer;

@@ -1,4 +1,4 @@
-const cocApi = require("../hooks/useCoc.js");
+// const cocApi = require("../hooks/useCoc.js");
 const ClanWarInfo = require("../mongoSchemas/clanWarInfo");
 
 function updateCurrentWarInfo() {

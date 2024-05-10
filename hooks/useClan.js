@@ -35,13 +35,9 @@ const fetch = (options, headers) => {
   });
 };
 
-// fetch(options)
-//   .then((d) => console.log(d))
-//   .catch((err) => console.log(err));
-
 const useClan = (tag) => {
   const options = {
-    hostname: "api.clashofclans.com",
+    hostname: process.env.API_BASE_URL,
     path: `/v1/clans/${tag}`,
     method: "GET",
     headers: {

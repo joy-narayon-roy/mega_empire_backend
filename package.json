@@ -2,10 +2,10 @@
   "name": "mega_empire_backend",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js",
+    "start": "node .",
+    "dev": "nodemon .",
     "test": "nodemon app.js"
   },
   "author": "",
@@ -22,6 +22,7 @@
     "express": "^4.17.3",
     "mongodb": "^4.4.1",
     "mongoose": "^6.2.6",
+    "morgan": "^1.10.0",
     "supercell-api": "^1.1.2"
   }
 }

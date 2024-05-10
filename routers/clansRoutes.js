@@ -1,20 +1,19 @@
 const router = require("express").Router();
 
-const clanGetController = require("../controllers/apiControllers/clanControllers/clanGetController");
-const currentwarGetController = require("../controllers/apiControllers/clanControllers/currentwarGetController");
-const currentwarleagueGetController = require("../controllers/apiControllers/clanControllers/currentwarleagueGetController");
-const warlogGetCOntroller = require("../controllers/apiControllers/clanControllers/warlogGetCOntroller");
-const wardetaileGetController = require("../controllers/apiControllers/clanControllers/wardetaileGetController");
-const warleaguelogGetController = require("../controllers/apiControllers/clanControllers/warleaguelogGetController");
-const warleaguewarGetController = require("../controllers/apiControllers/clanControllers/warleaguewarGetController");
+const clan_controller = require("../controllers/apiControllers/clan");
 
-router.get("/", clanGetController);
-router.get("/currentwar", currentwarGetController);
-router.get("/warlog", warlogGetCOntroller);
+const wardetaileGetController = require("../controllers/apiControllers/clan/wardetaileGetController");
+const warleaguelogGetController = require("../controllers/apiControllers/clan/warleaguelogGetController");
+
+router.get("/currentwar", clan_controller.currentwar);
+router.get("/warlog", clan_controller.warlog);
+router.get("/currentleaguegroup", clan_controller.currentleaguegroup);
+router.get("/warleaguewar", clan_controller.warleaguewar);
 router.get("/wardetail", wardetaileGetController);
-router.get("/currentwarleague", currentwarleagueGetController);
 router.get("/warleaguelog", warleaguelogGetController);
-router.get("/warleaguewar", warleaguewarGetController);
+router.get("/members", clan_controller.members);
+router.get("/capitalraidseasons");
+router.get("/", clan_controller.clans);
 router.get("/*");
 
 module.exports = router;

@@ -1,6 +1,6 @@
-const { getCurrentwar } = require("../../../services/x");
+const { getCurrentwar } = require("../../../services/clans");
 
-async function currentwarGetController(req, res, next) {
+async function currentwar(req, res, next) {
   try {
     let { tag = "#RRVJCJVY" } = req.query;
     const { data, status } = await getCurrentwar(tag);
@@ -10,4 +10,4 @@ async function currentwarGetController(req, res, next) {
   }
 }
 
-module.exports = currentwarGetController;
+module.exports = currentwar;

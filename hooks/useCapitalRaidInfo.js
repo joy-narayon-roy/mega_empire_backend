@@ -1,5 +1,5 @@
-const ApiToken = require("../mongoSchemas/apiToken");
-const axios = require("axios");
+const useFetch = require("../hooks/useFetch");
+const apikeydb = require("../utilities/apikeyDB");
 /**
  *
  * @param {*} req
@@ -10,32 +10,29 @@ const axios = require("axios");
  * @param {number} before
  */
 
-module.exports = async (clantag, limit, after, before) => {
-  let apiToken = await ApiToken.findOne({
-    name: process.env.FROM,
-  });
-
-  const config = {
-    headers: {
-      Authorization: `Bearer ${apiToken.token}`,
-    },
-  };
+async function useCapitalRaidInfo(clantag = "#RRVJCJVY", limit, after, before) {
+  let apiToken = apikeydb.getKey();
 
   let searchParams = new URLSearchParams();
   if (limit) searchParams.append("limit", limit);
   if (after) searchParams.append("after", after);
   if (before) searchParams.append("before", before);
 
-  let apiUrl = `https://api.clashofclans.com/v1/clans/${clantag}/capitalraidseasons?${searchParams.toString()}`;
+  const options = {
+    hostname: "api.clashofclans.com",
+    path: `/v1/clans/${clantag}/warlog${
+      searchParams.toString() ? "?" + searchParams.toString() : ""
+    }`,
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${apiToken}`,
+    },
+  };
 
   try {
-    let resData = await axios.get(apiUrl, config);
-
-    return {
-      data: resData.data,
-      error: null,
-      status: resData.status,
-    };
+    let data = await useFetch(options);
+    return data;
   } catch (error) {
     return {
       data: null,
@@ -43,4 +40,5 @@ module.exports = async (clantag, limit, after, before) => {
       status: error.response.status,
     };
   }
-};
+}
+module.exports = useCapitalRaidInfo;

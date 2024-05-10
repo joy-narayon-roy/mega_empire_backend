@@ -1,4 +1,4 @@
-const cocApi = require("../../hooks/useCoc");
+// const cocApi = require("../../hooks/useCoc");
 const ClanWarInfo = require("../../mongoSchemas/clanWarInfo");
 
 async function creatWarInfo(tag, currentwar) {
