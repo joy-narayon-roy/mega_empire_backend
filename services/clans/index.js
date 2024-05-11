@@ -1,3 +1,4 @@
+const getCapitalraidseasons = require("./getCapitalraidseasons");
 const getClan = require("./getClan");
 const getClans = require("./getClans");
 const getCurrentleaguegroup = require("./getCurrentleaguegroup");
@@ -14,4 +15,5 @@ module.exports = {
   getLeaguegroupWar,
   getMembers,
   getWarLog,
+  getCapitalraidseasons,
 };

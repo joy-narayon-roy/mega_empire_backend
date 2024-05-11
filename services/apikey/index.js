@@ -3,4 +3,4 @@ function getApikey() {
   return apiketDB.getKey();
 }
 
-module.exports = {};
+module.exports = { getApikey };

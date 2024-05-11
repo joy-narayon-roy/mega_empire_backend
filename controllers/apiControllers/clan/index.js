@@ -5,6 +5,7 @@ const warlog = require("./warlog");
 const clan = require("./clan");
 const clans = require("./clans");
 const members = require("./members");
+const clansCapitalRaidLog = require("./clansCapitalRaidLog");
 
 module.exports = {
   currentwar,
@@ -14,4 +15,5 @@ module.exports = {
   clans,
   clan,
   members,
+  clansCapitalRaidLog,
 };
